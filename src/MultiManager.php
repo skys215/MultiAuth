@@ -51,8 +51,8 @@ class MultiManager
 		} else {
 			if(!empty($this->providers)) {
 				foreach($this->providers AS $provider) {
-					if($provider->$name() !== null) {
-						return $provider->$name();
+					if(call_user_func_array([$provider, $name], $arguments) !== null) {
+						return call_user_func_array([$provider, $name], $arguments);
 					}
 				}
 			}
